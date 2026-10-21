@@ -3,7 +3,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import WebSocket from 'ws'; // if TS complains, use: import * as WebSocket from 'ws';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+import WebSocket = require('ws'); // if TS complains, use: import * as WebSocket from 'ws';
 
 type CaptionHandler = (caption: { text: string; isFinal: boolean }) => void;
 
