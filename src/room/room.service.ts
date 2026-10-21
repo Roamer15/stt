@@ -4,7 +4,7 @@ import { randomInt } from 'crypto';
 const ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 
 @Injectable()
-export class SpeechToTextService {
+export class RoomService {
   private rooms = new Set<string>();
   create(existing?: string): string {
     if (existing && this.rooms.has(existing)) return existing;
