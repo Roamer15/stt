@@ -5,9 +5,9 @@ import Speak from './Speak';
 function Home() {
   return (
     <div style={{ padding: 24 }}>
-      <h1>Live Captions</h1>
-      <p><Link to="/display">TV / computer (display)</Link></p>
-      <p><Link to="/speak">Teacher (phone)</Link></p>
+      <h1 className='text-6xl mb-4'>Live Captions</h1>
+      <p className='text-blue-500 text-2xl'><Link to="/display">TV / computer (display)</Link></p>
+      <p className='text-blue-500 text-2xl'><Link to="/speak">Teacher (phone)</Link></p>
     </div>
   );
 }
