@@ -135,27 +135,95 @@ export default function Speak() {
 
   if (status === 'joined') {
     return (
-      <div className='p-6'>
-        <h2>Connected ✅</h2>
-        {recording ? (
-          <button onClick={stopCaptioning}>
-            <Mic size={48}/>
-            Stop captioning</button>
-        ) : (
-          <button onClick={startCaptioning}>Start captioning</button>
-        )}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <p style={{ opacity: 0.6 }}>{preview}</p>
+      <div className="min-h-screen bg-[#f5f5f7] text-slate-900 antialiased">
+        <div className="mx-auto flex min-h-screen max-w-5xl items-center justify-center px-5 py-10">
+          <div className="w-full max-w-xl rounded-4xl border border-black/5 bg-white/80 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm sm:p-8">
+            <div className="mb-5 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-slate-500">
+                  Teacher
+                </p>
+                <h2 className="mt-2 text-3xl font-semibold tracking-[-0.06em] text-slate-900">
+                  Connected
+                </h2>
+              </div>
+              <span
+                className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] ${
+                  recording
+                    ? 'border border-emerald-200 bg-emerald-50 text-emerald-700'
+                    : 'border border-slate-200 bg-slate-100 text-slate-600'
+                }`}
+              >
+                {recording ? 'Live' : 'Ready'}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={recording ? stopCaptioning : startCaptioning}
+              className={`flex w-full items-center justify-center gap-3 rounded-[20px] px-5 py-4 text-base font-medium transition-all duration-200 ease-out ${
+                recording
+                  ? 'bg-slate-900 text-white shadow-[0_12px_24px_rgba(15,23,42,0.18)] hover:bg-slate-800'
+                  : 'border border-slate-200 bg-slate-50 text-slate-900 hover:border-slate-300 hover:bg-white'
+              }`}
+            >
+              <span
+                className={`flex h-11 w-11 items-center justify-center rounded-full ${
+                  recording ? 'bg-white/10 text-white' : 'bg-slate-900 text-white'
+                }`}
+              >
+                <Mic size={20} />
+              </span>
+              {recording ? 'Stop captioning' : 'Start captioning'}
+            </button>
+
+            <div className="mt-6 rounded-[22px] border border-slate-200 bg-slate-50 p-4">
+              <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">
+                Live caption
+              </p>
+              <p className="min-h-18 text-base leading-7 text-slate-700">
+                {preview || 'Waiting for transcript...'}
+              </p>
+            </div>
+
+            {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 24 }}>
-      <h2>{wantRecordingRef.current ? 'Reconnecting…' : 'Enter room code'}</h2>
-      <input value={input} onChange={(e) => setInput(e.target.value)} maxLength={6} />
-      <button onClick={manualJoin}>Join</button>
-      {status === 'error' && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="min-h-screen bg-[#f5f5f7] text-slate-900 antialiased">
+      <div className="mx-auto flex min-h-screen max-w-5xl items-center justify-center px-5 py-10">
+        <div className="w-full max-w-md rounded-4xl border border-black/5 bg-white/80 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm sm:p-8">
+          <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-slate-500">
+            Teacher
+          </p>
+          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.06em] text-slate-900">
+            {wantRecordingRef.current ? 'Reconnecting…' : 'Enter room code'}
+          </h2>
+
+          <div className="mt-6 flex gap-3">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              maxLength={6}
+              placeholder="ABC123"
+              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-slate-400 focus:bg-white"
+            />
+            <button
+              type="button"
+              onClick={manualJoin}
+              className="rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+            >
+              Join
+            </button>
+          </div>
+
+          {status === 'error' && <p className="mt-4 text-sm text-red-600">{error}</p>}
+        </div>
+      </div>
     </div>
   );
 }
