@@ -6,7 +6,6 @@ hearing, or struggling with fast speech and accents can follow the lesson.
 
 **Live demo:** <https://vcribe.vercel.app>
 
-![Vcribe demo](docs/demo.gif)
 
 ## How it works
 
@@ -145,9 +144,8 @@ your computer, and scan the QR code with your phone.
 
 ## Author
 
-Built by Beleke Ian Langeh ([@Roamer15](https://github.com/Roamer15)) ·
-[LinkedIn](https://linkedin.com/in/belekeian)
+Built by [Ian Langeh](https://x.com/Bel78709)
 
 ## License
 
-<choose a license, e.g. MIT>
+[MIT](./LICENSE)
