@@ -4,9 +4,12 @@ import { CaptionsGateway } from './captions/caption.gateway';
 import { RoomService } from './room/room.service';
 import { ConfigModule } from '@nestjs/config';
 import { TranscriptionService } from './captions/transcription.service';
+import { ScheduleModule } from '@nestjs/schedule';
+import { AppController } from './app.controller';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true })],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), ScheduleModule.forRoot()],
+  controllers: [AppController],
   providers: [AppService, CaptionsGateway, RoomService, TranscriptionService],
 })
 export class AppModule {}
