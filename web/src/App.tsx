@@ -1,7 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import Display from './Display';
 import Speak from './Speak';
-import Speaktest from './Speaktest';
 
 function Home() {
   return (
@@ -19,7 +18,6 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/display" element={<Display />} />
       <Route path="/speak" element={<Speak />} />
-      <Route path='/speak-test' element={<Speaktest/>}/>
     </Routes>
   );
 }
