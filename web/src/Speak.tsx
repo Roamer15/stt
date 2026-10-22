@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { socket } from '../services/socket';
+import { Mic } from 'lucide-react';
 
 export default function Speak() {
   const [params] = useSearchParams();
@@ -134,10 +135,12 @@ export default function Speak() {
 
   if (status === 'joined') {
     return (
-      <div style={{ padding: 24 }}>
+      <div className='p-6'>
         <h2>Connected ✅</h2>
         {recording ? (
-          <button onClick={stopCaptioning}>Stop captioning</button>
+          <button onClick={stopCaptioning}>
+            <Mic size={48}/>
+            Stop captioning</button>
         ) : (
           <button onClick={startCaptioning}>Start captioning</button>
         )}
