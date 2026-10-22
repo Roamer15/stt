@@ -7,6 +7,7 @@ export default function Display() {
   const [speakerOnline, setSpeakerOnline] = useState(false);
   const [lines, setLines] = useState<string[]>([]);
   const [interim, setInterim] = useState("");
+  const [paired, setPaired] = useState(false);
 
   useEffect(() => {
     // Runs on first connect AND every reconnect; resumes the same code if we have one
@@ -17,7 +18,10 @@ export default function Display() {
         setCode(res.code);
       });
     };
-    const onSpeakerOn = () => setSpeakerOnline(true);
+    const onSpeakerOn = () => {
+      setSpeakerOnline(true);
+      setPaired(true);
+    };
     const onSpeakerOff = () => setSpeakerOnline(false);
     const onCaption = (c: { text: string; isFinal: boolean }) => {
       if (c.isFinal) {
@@ -50,7 +54,7 @@ export default function Display() {
 
   if (!code) return <p>Connecting…</p>;
 
-  if (!speakerOnline) {
+  if (!paired) {
     return (
       <div style={{ textAlign: "center", padding: 40 }}>
         <h1>Scan to start captioning</h1>
@@ -66,6 +70,19 @@ export default function Display() {
 
   return (
     <div style={{ padding: 40, fontSize: 48, lineHeight: 1.3 }}>
+      {!speakerOnline && (
+        <div
+          style={{
+            position: "fixed",
+            top: 12,
+            right: 12,
+            fontSize: 18,
+            opacity: 0.7,
+          }}
+        >
+          Teacher disconnected, reconnecting…
+        </div>
+      )}
       {lines.map((line, i) => (
         <p key={i}>{line}</p>
       ))}
